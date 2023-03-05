@@ -15,6 +15,7 @@ const App = () => {
 
   const [votes, setVotes] = useState(points);
   const [selected, setSelected] = useState(0);
+  const [total, setTotal] = useState(0);
 
   
   const randomNumber = () => {
@@ -24,18 +25,33 @@ const App = () => {
   const updateVotes = () => {
     const copy = [...votes];
     copy[selected] += 1;
-    console.log("copy is", copy);
     setVotes(copy);
+    const votesTotal = Math.max(...copy)
+    setTotal(votesTotal)
   };
 
+  const caculateMostVotes = () => {
+    const votesTotal = Math.max(...votes)
+    const indexVotes = votes.indexOf(votesTotal)
+    return indexVotes
+  }
 
+  const mostVotes = caculateMostVotes()
   return (
+    <>
     <div>
+      <h2>Anecdote of the day</h2>
       {anecdotes[selected]} <br />
       has {votes[selected]} votes <br />
       <button onClick={updateVotes}>vote</button>
       <button onClick={randomNumber}>next anecdote</button>
-    </div>
+      </div>
+      <div>
+      <h2>Anecdote with most votes</h2>
+        {anecdotes[mostVotes]} <br />
+        has {total} votes
+      </div>
+    </>
   );
 };
 
