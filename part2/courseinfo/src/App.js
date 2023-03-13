@@ -25,14 +25,16 @@ const Content = ({ courseParts }) => {
 };
 
 const Total = ({ courseTotal }) => {
-  let total = 0
-  for (let i = 0; i < courseTotal.parts.length; i++) {
-    total = total + courseTotal.parts[i].exercises
-  }
-
+const sumTotalExercises = courseTotal.parts.reduce(
+  (sum, part) => {
+    return sum + part.exercises
+  },
+   0
+);
+console.log(sumTotalExercises)
   return (
     <p>
-      <strong>total of {total} exercises</strong>
+      <strong>total of {sumTotalExercises} exercises</strong>
     </p>
   );
 };
