@@ -10,11 +10,15 @@ const Person = ({ personName, personNumber }) => {
 
 const App = () => {
   const [persons, setPersons] = useState([
-    { name: "Arto Hellas", id: 1, number: 666 },
+    { name: 'Arto Hellas', number: '040-123456', id: 1 },
+    { name: 'Ada Lovelace', number: '39-44-5323523', id: 2 },
+    { name: 'Dan Abramov', number: '12-43-234345', id: 3 },
+    { name: 'Mary Poppendieck', number: '39-23-6423122', id: 4 }
   ]);
   const [newName, setNewName] = useState("");
-
   const [newNumber, setNewNumber] = useState("");
+  const [selected, setSelected] = useState([]);
+  const [newSearch, setNewSearch] = useState("");
 
   const addName = (event) => {
     event.preventDefault();
@@ -39,6 +43,20 @@ const App = () => {
     setNewNumber(event.target.value);
   };
 
+  const handleNameSearch = (event) => {
+    setNewSearch(event.target.value);
+    const entriesToShow = newSearch
+      ? persons.filter(person => {
+        return (
+          person.name.toLowerCase().includes(event.target.value.toLowerCase()))
+        }
+      )
+      : persons
+     console.log(entriesToShow)
+     setSelected(entriesToShow);
+  }
+
+
   const doesNameExist = () => {
     for (let i = 0; i < persons.length; i++) {
       if (newName === persons[i].name) {
@@ -48,8 +66,11 @@ const App = () => {
   };
 
   return (
+
     <div>
       <h2>Phonebook</h2>
+      filter shown with <input value={newSearch} onChange={handleNameSearch}/>
+      <h2>add a new</h2>
       <form onSubmit={addName}>
         <div>
           name: <input value={newName} onChange={handleNameChange} />
@@ -58,8 +79,6 @@ const App = () => {
           number:{" "}
           <input
             value={newNumber}
-            input
-            type="number"
             onChange={handleNumberChange}
           />
         </div>
@@ -68,7 +87,7 @@ const App = () => {
         </div>
       </form>
       <h2>Numbers</h2>
-      {persons.map((person) => (
+      {selected.map((person) => (
         <Person
           key={person.id}
           personName={person.name}
