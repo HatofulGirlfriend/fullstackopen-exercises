@@ -1,11 +1,10 @@
 import { useState } from 'react'
 
-const Person = ({ person }) => {
+const Person = ({ personName }) => {
   return (
-    <div>{person.name}</div>
+    <div>{personName}</div>
   )
 }
-
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -20,6 +19,11 @@ const App = () => {
       id: persons.length + 1,
     }
 
+    if (doesNameExist) {
+      alert(`${newName} is already added to the phonebook`)
+    }
+
+
     setPersons(persons.concat(nameObject))
     setNewName("")
 
@@ -28,6 +32,15 @@ const App = () => {
   const handleNameChange = (event) => {
     setNewName(event.target.value)
   }
+
+  const doesNameExist = () => {
+    for (let i = 0; i < persons.length; i++) {
+      if (newName === persons[i].name) {
+        return true
+      }
+    }
+  }
+ 
 
   return (
     <div>
@@ -43,7 +56,7 @@ const App = () => {
       </form>
       <h2>Numbers</h2>
         {persons.map(person => 
-          <Person key={person.name} person={person} />
+          <Person key={person.id} personName={person.name} />
         )}
     </div>
   )
