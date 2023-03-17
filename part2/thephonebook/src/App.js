@@ -3,6 +3,7 @@ import axios from "axios";
 import PersonForm from "./components/PersonForm";
 import Persons from "./components/Persons";
 import Filter from "./components/Filter";
+import personService from "./services/persons"
 
 const App = () => {
   const [persons, setPersons] = useState([]);
@@ -11,18 +12,14 @@ const App = () => {
   const [selected, setSelected] = useState(persons);
   const [newSearch, setNewSearch] = useState("");
 
-  const hook = () => {
-    console.log("effect")
-    axios
-      .get("http://localhost:3001/persons")
-      .then(response => {
-        console.log("promise fulfilled")
-        setPersons(response.data)
-        setSelected(response.data)
+  useEffect(() => {
+    personService
+      .getAll()
+      .then(initialPersons => {
+        setPersons(initialPersons)
+        setSelected(initialPersons)
       })
-  }
-
-  useEffect(hook, [])
+  }, [])
 
   const addName = (event) => {
     event.preventDefault();
@@ -35,16 +32,13 @@ const App = () => {
         number: newNumber,
         id: persons.length + 1,
       };
-      axios
-        .post("http://localhost:3001/persons", nameObject)
-        .then(response => {
-          console.log(response)
-          setPersons(persons.concat(response.data));
-          setSelected(persons.concat(response.data));
+      personService
+        .create(nameObject)
+        .then(returnedPerson => {
+          setPersons(persons.concat(returnedPerson))
+          setSelected(persons.concat(returnedPerson))
         })
-
     }
-
     setNewName("");
     setNewNumber("");
   };
