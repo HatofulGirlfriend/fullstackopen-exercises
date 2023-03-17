@@ -35,8 +35,14 @@ const App = () => {
         number: newNumber,
         id: persons.length + 1,
       };
-      setPersons(persons.concat(nameObject));
-      setSelected(persons.concat(nameObject));
+      axios
+        .post("http://localhost:3001/persons", nameObject)
+        .then(response => {
+          console.log(response)
+          setPersons(persons.concat(response.data));
+          setSelected(persons.concat(response.data));
+        })
+
     }
 
     setNewName("");
@@ -59,8 +65,6 @@ const App = () => {
       : persons
      setSelected(entriesToShow);
   }
-
-
 
   const doesNameExist = () => {
     for (let i = 0; i < persons.length; i++) {
