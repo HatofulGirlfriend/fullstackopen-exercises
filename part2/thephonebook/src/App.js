@@ -4,6 +4,7 @@ import Persons from "./components/Persons";
 import Filter from "./components/Filter";
 import personService from "./services/persons"
 import Notification from "./components/Notification";
+import ErrorNotification from "./components/ErrorNotification";
 import "./styles.css"
 
 const App = () => {
@@ -13,6 +14,7 @@ const App = () => {
   const [selected, setSelected] = useState(persons);
   const [newSearch, setNewSearch] = useState("");
   const [message, setMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
     personService
@@ -43,13 +45,14 @@ const App = () => {
               setMessage(null)
             }, 2000)
           })
-          // .catch(error => {
-          //   setMessage(
-          //     `'${updatedObject.name}' was already removed from server`
-          //   )
-          //   setTimeout(() => {
-          //     setMessage(null)
-          //   }, 5000)})
+          .catch(() => {
+            setErrorMessage(
+              `'${updatedObject.name}' was already removed from server`
+            )
+            setTimeout(() => {
+              setErrorMessage(null)
+            }, 5000)})
+            setSelected(persons.filter(p => p.id !== updatedObject.id))
       }
     } else {
       const nameObject = {
@@ -113,6 +116,7 @@ const App = () => {
     <div>
       <h2>Phonebook</h2>
       <Notification message={message} />
+      <ErrorNotification errorMessage={errorMessage} />
       <Filter newSearch={newSearch} handleNameSearch={handleNameSearch} />
       <h3>Add a new</h3>
       <PersonForm addName={addName} newName={newName} newNumber={newNumber}
