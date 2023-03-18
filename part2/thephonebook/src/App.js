@@ -3,6 +3,8 @@ import PersonForm from "./components/PersonForm";
 import Persons from "./components/Persons";
 import Filter from "./components/Filter";
 import personService from "./services/persons"
+import Notification from "./components/Notification";
+import "./styles.css"
 
 const App = () => {
   const [persons, setPersons] = useState([]);
@@ -10,6 +12,7 @@ const App = () => {
   const [newNumber, setNewNumber] = useState("");
   const [selected, setSelected] = useState(persons);
   const [newSearch, setNewSearch] = useState("");
+  const [message, setMessage] = useState(null);
 
   useEffect(() => {
     personService
@@ -35,7 +38,18 @@ const App = () => {
           .update(updatedObject.id, updatedObject)
           .then(() =>{
             setSelected(persons.filter(p => p.id !== updatedObject.id).concat(updatedObject))
+            setMessage(`${updatedObject.name} has been updated`)
+            setTimeout(() => {
+              setMessage(null)
+            }, 2000)
           })
+          // .catch(error => {
+          //   setMessage(
+          //     `'${updatedObject.name}' was already removed from server`
+          //   )
+          //   setTimeout(() => {
+          //     setMessage(null)
+          //   }, 5000)})
       }
     } else {
       const nameObject = {
@@ -48,6 +62,10 @@ const App = () => {
         .then(returnedPerson => {
           setPersons(persons.concat(returnedPerson))
           setSelected(persons.concat(returnedPerson))
+          setMessage(`${returnedPerson.name} has been added`)
+            setTimeout(() => {
+              setMessage(null)
+            }, 2000)
         })
     }
     setNewName("");
@@ -89,10 +107,12 @@ const App = () => {
     }
   }
 
+
   return (
 
     <div>
       <h2>Phonebook</h2>
+      <Notification message={message} />
       <Filter newSearch={newSearch} handleNameSearch={handleNameSearch} />
       <h3>Add a new</h3>
       <PersonForm addName={addName} newName={newName} newNumber={newNumber}
