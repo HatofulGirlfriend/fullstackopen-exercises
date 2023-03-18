@@ -22,9 +22,21 @@ const App = () => {
 
   const addName = (event) => {
     event.preventDefault();
-
+    
     if (doesNameExist()) {
-      alert(`${newName} is already added to the phonebook`);
+      if (window.confirm(`${newName} is already added to the phonebook, replace the old number with a new one?`)) {
+        const updatedObject = {
+          name: persons.find(p => p.name.toLowerCase() === newName.toLowerCase()).name,
+          number: newNumber,
+          id: persons.find(p => p.name.toLowerCase() === newName.toLowerCase()).id
+        }
+
+        personService
+          .update(updatedObject.id, updatedObject)
+          .then(() =>{
+            setSelected(persons.filter(p => p.id !== updatedObject.id).concat(updatedObject))
+          })
+      }
     } else {
       const nameObject = {
         name: newName,
@@ -66,7 +78,6 @@ const App = () => {
       }
     }
   };
-
 
   const deletePerson = (idToDelete, personToDelete) => {
     if (window.confirm(`Delete ${personToDelete}?`)) {
