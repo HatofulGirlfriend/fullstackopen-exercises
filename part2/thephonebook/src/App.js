@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import PersonForm from "./components/PersonForm";
 import Persons from "./components/Persons";
 import Filter from "./components/Filter";
@@ -68,6 +67,17 @@ const App = () => {
     }
   };
 
+
+  const deletePerson = (idToDelete, personToDelete) => {
+    if (window.confirm(`Delete ${personToDelete}?`)) {
+      personService
+        .remove(idToDelete)
+        .then(() => {
+          setSelected(persons.filter(p => p.id !== idToDelete))
+        })
+    }
+  }
+
   return (
 
     <div>
@@ -83,6 +93,8 @@ const App = () => {
           key={person.id}
           personName={person.name}
           personNumber={person.number}
+          handleDeletePersons={deletePerson}
+          id={person.id}
         />
       ))}
     </div>
