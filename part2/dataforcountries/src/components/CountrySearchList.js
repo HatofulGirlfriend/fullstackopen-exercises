@@ -1,8 +1,8 @@
-const CountrySearchList = ({ countryName }) => {
+const CountrySearchList = ({ country, buttonOnClick }) => {
 
 return (
     <div>
-        {countryName}
+        {country.name.common}{" "}<button onClick={() => buttonOnClick(country)}>show</button>
     </div>
 )
 }

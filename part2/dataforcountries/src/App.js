@@ -27,7 +27,12 @@ const handleNameSearch = (newSearch) => {
   })
     setSelected(filteredCountries);
 }
-console.log(selected);
+
+const buttonCountryShortcut = (country) => {
+ setSelected([country])
+}
+
+
   return (
     <>
       <div>
@@ -39,7 +44,8 @@ console.log(selected);
       {selected.length > 1 && selected.length <= 10 &&
         selected.map((country) => (
           <div key={country.name.common}>
-          <CountrySearchList countryName={country.name.common} />
+          <CountrySearchList country={country}
+           buttonOnClick={buttonCountryShortcut} />
           </div>
         ))
       }
