@@ -6,7 +6,6 @@ import CountryDisplay from "./components/CountryDisplay";
 
 const App = () => {
 const [countries, setCountries] = useState([]);
-// const [country, showCountry] = useState(null);
 const [search, setSearch] = useState("");
 const [selected, setSelected] = useState(countries);
 
