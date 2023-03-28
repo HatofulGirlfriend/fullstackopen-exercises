@@ -2,9 +2,9 @@ POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-    "title": "Smart Bitches, Trashy Books",
-    "author": "various",
-    "url": "https://smartbitchestrashybooks.com/"
+    "title": "Cheap, Lazy Vegan",
+    "author": "Rose",
+    "url": "https://thecheaplazyvegan.com/"
 }
 
 ###
@@ -12,7 +12,7 @@ POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-    "title": "Vegan Richa",
-    "author": "Richa",
-    "url": "https://www.veganricha.com/"
+    "title": "The Plant-Based Wok",
+    "author": "Hannah Che",
+    "url": "https://theplantbasedwok.com/recipes/"
 }
