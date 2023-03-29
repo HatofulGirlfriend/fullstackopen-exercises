@@ -87,7 +87,7 @@ describe("total likes", () => {
 
 })
 
-describe("favorite blog", () => {
+describe("most popular authors", () => {
   const oneBlogEntry = {
     _id: "5a422ba71b54a676234d17fb",
     title: "TDD harms architecture",
@@ -157,9 +157,7 @@ describe("favorite blog", () => {
     const result = listHelper.favoriteBlog(bloglist)
     expect(result.title).toEqual(oneBlogEntry.title)
   })
-})
 
-describe("blog author with most blogs", () => {
   const newBlogList = [
     {
       title: "Will this fit on my head?",
@@ -219,10 +217,15 @@ describe("blog author with most blogs", () => {
   ]
 
   const miteux = {"author": "Miteux LePew", "blogs": 4}
+  const miteuxLikes = { author: 'Miteux LePew', likes: 39466 }
+
   test("results with author name and number of blogs", () => {
     const result = listHelper.mostBlogs(newBlogList)
     expect(result).toEqual(miteux)
   })
 
-
+  test("checks for author with most likes across all blogs", () => {
+    const result = listHelper.mostLikes(newBlogList)
+    expect(result).toEqual(miteuxLikes)
+  })
 })
