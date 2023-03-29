@@ -1,4 +1,5 @@
 const listHelper = require('../utils/list_helper')
+var _ = require("lodash")
 
 
 describe("total likes", () => {
@@ -156,4 +157,72 @@ describe("favorite blog", () => {
     const result = listHelper.favoriteBlog(bloglist)
     expect(result.title).toEqual(oneBlogEntry.title)
   })
+})
+
+describe("blog author with most blogs", () => {
+  const newBlogList = [
+    {
+      title: "Will this fit on my head?",
+      author: "Seymour Hats",
+      url: "blahblah",
+      likes: 4
+    },
+    {
+      title: "I can fly if you close your eyes",
+      author: "Miteux LePew",
+      url: "blahblah",
+      likes: 83,
+    },
+    { 
+      title: "I can nap anywhere, learn how to do as I do!",
+      author: "Beanie Hermenault",
+      url: "blahblah",
+      likess: 2
+    },
+    {
+      title: "How I earned my living via baking",
+      author: "Miteux LePew",
+      url: "blahblah",
+      likes: 383,
+    },
+    {
+      title: "I like to eat baguettes",
+      author: "Patrice Hermenault",
+      url: "blahblah",
+      likes: 0
+    },
+    {
+      title: "This secret ingredient to my baguettes will get me thrown in jail",
+      author: "Miteux LePew",
+      url: "blahblah",
+      likes: 38300,
+    },
+    { 
+      title: "The untimely demise of the shopping trolley",
+      author: "Sean O'Hare",
+      url: "blahblah",
+      likes: 37
+    },
+    {
+      title: "hfoefifefmmhefjeifhef?",
+      author: "R. Varasavarajan",
+      url: "blahblah",
+      likes: 8
+    },
+    {
+      title: "I am the best",
+      author: "Miteux LePew",
+      url: "blahblah",
+      likes: 700,
+    }
+  
+  ]
+
+  const miteux = {"author": "Miteux LePew", "blogs": 4}
+  test("results with author name and number of blogs", () => {
+    const result = listHelper.mostBlogs(newBlogList)
+    expect(result).toEqual(miteux)
+  })
+
+
 })
