@@ -68,7 +68,29 @@ test("blog without likes defaults likes to zero", async () => {
 
   const response = await api.get("/api/blogs")
 
-  // const contents = response.body.map(r => r.likes)
-
   expect(response.body[2].likes).toBe(0)
+})
+
+test("blog without title fails to post", async () => {
+  const newBlog = {
+    author: "Bad Blog",
+    url:"testest",
+  }
+
+  await api
+    .post("/api/blogs")
+    .send(newBlog)
+    .expect(400)
+})
+
+test("blog without url fails to post", async () => {
+  const newBlog = {
+    title: "Bad blog title",
+    author: "Bad Blog author",
+  }
+
+  await api
+    .post("/api/blogs")
+    .send(newBlog)
+    .expect(400)
 })
