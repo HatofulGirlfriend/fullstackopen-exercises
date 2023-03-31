@@ -25,3 +25,5 @@ yarn-error.log*
 practiceforfunsies.js
 numberguessing
 redoexercises
+
+**.env
