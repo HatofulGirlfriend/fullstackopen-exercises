@@ -1,9 +1,5 @@
 var _ = require("lodash")
 
-const dummy = (blogs) => {
-  return 1
-}
-
 const totalLikes = array => {
   const reducer = (sum, item) => {
     return sum + item.likes
@@ -42,10 +38,23 @@ const mostLikes = (bloglist) => {
   return authorWithMostLikes
 }
 
+const initialBlogs = [
+  {
+    title: "The Plant-Based Wok",
+    author: "Hannah Che",
+    url: "https://theplantbasedwok.com/recipes",
+  },
+  {
+    title: "The Minimalist Baker",
+    author: "Dana Schultz",
+    url: "https://minimalistbaker.com/",
+  },
+]
+
 module.exports = {
-  dummy,
   totalLikes,
   favoriteBlog,
   mostBlogs,
-  mostLikes
+  mostLikes,
+  initialBlogs
 }

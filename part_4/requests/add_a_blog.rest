@@ -2,9 +2,9 @@ POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-    "title": "Cheap, Lazy Vegan",
-    "author": "Rose",
-    "url": "https://thecheaplazyvegan.com/"
+    "title": "Elf in the Kitchen",
+    "author": "Kasia/Kat",
+    "url": "http://elf-w-kuchni.blogspot.com/p/przepisy.html"
 }
 
 ###
