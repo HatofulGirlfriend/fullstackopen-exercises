@@ -43,11 +43,13 @@ const initialBlogs = [
     title: "The Plant-Based Wok",
     author: "Hannah Che",
     url: "https://theplantbasedwok.com/recipes",
+    likes: 14,
   },
   {
     title: "The Minimalist Baker",
     author: "Dana Schultz",
     url: "https://minimalistbaker.com/",
+    likes: 21,
   },
 ]
 
