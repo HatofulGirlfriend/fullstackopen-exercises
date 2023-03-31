@@ -1,4 +1,5 @@
 var _ = require("lodash")
+const Blog = require("../models/blog")
 
 const totalLikes = array => {
   const reducer = (sum, item) => {
@@ -53,10 +54,25 @@ const initialBlogs = [
   },
 ]
 
+const nonExistingId = async () => {
+  const blog = new Blog({ content: "I don't exist" })
+  await blog.save()
+  await blog.deleteOne()
+
+  return blog._id.toString()
+}
+
+const blogsInDb = async () => {
+  const blogs = await Blog.find({})
+  return blogs.map(blog => blog.toJSON())
+}
+
 module.exports = {
   totalLikes,
   favoriteBlog,
   mostBlogs,
   mostLikes,
-  initialBlogs
+  initialBlogs,
+  nonExistingId,
+  blogsInDb,
 }

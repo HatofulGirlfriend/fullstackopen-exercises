@@ -27,9 +27,7 @@ test("expect id to be defined", async () => {
   expect(response.body[1].id).toBeDefined()
 })
 
-afterAll(async () => {
-  await mongoose.connection.close()
-}, 100000)
+
 
 test("Successfully create a new blog", async () => {
   const newBlog = {
@@ -88,9 +86,48 @@ test("blog without url fails to post", async () => {
     title: "Bad blog title",
     author: "Bad Blog author",
   }
-
   await api
     .post("/api/blogs")
     .send(newBlog)
     .expect(400)
 })
+
+test("a blog can be deleted", async () => {
+  const blogsAtStart = await listHelper.blogsInDb()
+  const blogToDelete = blogsAtStart[0]
+
+  await api
+    .delete(`/api/blogs/${blogToDelete.id}`)
+    .expect(204)
+
+  const blogsAtEnd = await listHelper.blogsInDb()
+
+  expect(blogsAtEnd).toHaveLength(
+    listHelper.initialBlogs.length - 1
+  )
+
+  const contents = blogsAtEnd.map(r => r.title)
+
+  expect(contents).not.toContain(blogToDelete.title)
+}, )
+
+test("updates the likes of a blog", async () => {
+  const blogsAtStart = await listHelper.blogsInDb()
+  const blogToUpdate = blogsAtStart[0]
+
+  const blog = {
+    title: "The Plant-Based Wok",
+    author: "Hannah Che",
+    url: "https://theplantbasedwok.com/recipes",
+    likes: 28,
+  }
+
+  await api
+    .put(`/api/blogs/${blogToUpdate.id}`)
+    .send(blog)
+    .expect(200)
+})
+
+afterAll(async () => {
+  await mongoose.connection.close()
+}, 100000)
