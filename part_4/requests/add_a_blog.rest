@@ -1,10 +1,11 @@
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1pdGV1eCIsImlkIjoiNjQyYjA5YTI3Mzk1NTY4NzBiNDBiNWQ4IiwiaWF0IjoxNjgwNTQyMjQxfQ.9ath_ocpW6V3Ni3TF8oMv8XejnFCtQu5aWGj_rWqiGc
 
 {
-    "title": "Hot for Food",
-    "author": "Lauren Toyota",
-    "url": "https://www.hotforfoodblog.com/"
+    "title": "Heart of a Baker",
+    "author": "Abby",
+    "url": "https://heartofabaker.com/"
 }
 
 ###
