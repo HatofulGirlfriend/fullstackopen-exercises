@@ -2,9 +2,9 @@ POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-    "title": "Elf in the Kitchen",
-    "author": "Kasia/Kat",
-    "url": "http://elf-w-kuchni.blogspot.com/p/przepisy.html"
+    "title": "Hot for Food",
+    "author": "Lauren Toyota",
+    "url": "https://www.hotforfoodblog.com/"
 }
 
 ###
@@ -12,7 +12,7 @@ POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-    "title": "The Plant-Based Wok",
-    "author": "Hannah Che",
-    "url": "https://theplantbasedwok.com/recipes/"
+    "title": "Nutriciously",
+    "author": "Alena",
+    "url": "https://nutriciously.com/"
 }
