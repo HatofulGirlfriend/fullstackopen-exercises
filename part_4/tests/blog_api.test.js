@@ -128,6 +128,32 @@ test("updates the likes of a blog", async () => {
     .expect(200)
 })
 
+test("user cannot be added with username less than 3 chars", async () => {
+  const newUser = {
+    username: "bo",
+    name: "Big Bobbo",
+    password: "cattodatto"
+  }
+
+  await api
+    .post("/api/users")
+    .send(newUser)
+    .expect(400)
+})
+
+test("user cannot enter password that is less than 3 chars", async () => {
+  const newUser = {
+    username: "miteuxrockz",
+    name: "Miteux LeFue",
+    password: "nu"
+  }
+
+  await api
+    .post("/api/users")
+    .send(newUser)
+    .expect(400)
+})
+
 afterAll(async () => {
   await mongoose.connection.close()
 }, 100000)
