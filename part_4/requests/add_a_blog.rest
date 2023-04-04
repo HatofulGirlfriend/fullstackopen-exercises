@@ -1,6 +1,6 @@
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJlYW5pZWJhYnkiLCJpZCI6IjY0MmIyM2Q2MzlkNjg4YzhkYjY3NWY2NSIsImlhdCI6MTY4MDU0ODg1MCwiZXhwIjoxNjgwNTUyNDUwfQ.9k8FE0JLAGxnfuKTW5XbEB-Sb_vuQV7qJds7P4YMzPs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJlYW5pZWJhYnkiLCJpZCI6IjY0MmIyM2Q2MzlkNjg4YzhkYjY3NWY2NSIsImlhdCI6MTY4MDYwMjAwMywiZXhwIjoxNjgwNjA1NjAzfQ.Uct17tQTe6StAWRDV1wSLs9oE0WzGEmWb87r0APp7XU
 
 {
     "title": "Heart of a Baker",

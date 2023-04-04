@@ -1,0 +1,21 @@
+DELETE http://localhost:3003/api/blogs/642bf529241c3dc0575c923f
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJlYW5pZWJhYnkiLCJpZCI6IjY0MmIyM2Q2MzlkNjg4YzhkYjY3NWY2NSIsImlhdCI6MTY4MDYwMjAwMywiZXhwIjoxNjgwNjA1NjAzfQ.Uct17tQTe6StAWRDV1wSLs9oE0WzGEmWb87r0APp7XU
+
+{
+    "title": "Heart of a Bake",
+    "author": "Abby",
+    "url": "https://heartofabaker.com/"
+}
+//Beanie ^
+###
+DELETE http://localhost:3003/api/blogs/642bf529241c3dc0575c923f
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1pdGV1eCIsImlkIjoiNjQyYjA5YTI3Mzk1NTY4NzBiNDBiNWQ4IiwiaWF0IjoxNjgwNjAyNDc4LCJleHAiOjE2ODA2MDYwNzh9.aIyHdH3Q0orh85VJanHd07XoK7Rhl1sGOCqKKTMt5hY
+
+{
+    "title": "Heart of a Bake",
+    "author": "Abby",
+    "url": "https://heartofabaker.com/"
+}
+//Miteux ^
