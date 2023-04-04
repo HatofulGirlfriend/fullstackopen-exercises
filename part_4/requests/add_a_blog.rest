@@ -1,13 +1,14 @@
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJlYW5pZWJhYnkiLCJpZCI6IjY0MmIyM2Q2MzlkNjg4YzhkYjY3NWY2NSIsImlhdCI6MTY4MDYwMjAwMywiZXhwIjoxNjgwNjA1NjAzfQ.Uct17tQTe6StAWRDV1wSLs9oE0WzGEmWb87r0APp7XU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJlYW5pZWJhYnkiLCJpZCI6IjY0MmIyM2Q2MzlkNjg4YzhkYjY3NWY2NSIsImlhdCI6MTY4MDYwNTY0NCwiZXhwIjoxNjgwNjA5MjQ0fQ.4lKypvXhNjJvvGG-Lk8T2pD_Y1OAU1bJ5blSZq6GViA
 
 {
-    "title": "Heart of a Baker",
+    "title": "Heart of a Beanie",
     "author": "Abby",
     "url": "https://heartofabaker.com/"
 }
 
+// Beanie ^
 ###
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
