@@ -25,17 +25,13 @@ blogsRouter.post("/", userExtractor, async (request, response) => {
   const user = request.user
 
   if (body.title === undefined) {
-    console.log('miteux 1');
     return response.status(400).json({ error: "title missing" })
   } else if (body.url === undefined) {
-    console.log('miteux 2');
     return response.status(400).json({ error: "url missing" })
   } else if (!request.token) {
-    console.log('miteux 3');
     return response.status(401).json({ error: "token not provided" })
   }
 
-  console.log('miteux 4');
 
   const blog = new Blog({
     title: body.title,
