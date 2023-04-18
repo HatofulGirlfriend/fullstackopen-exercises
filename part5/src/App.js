@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react'
 import Blog from './components/Blog'
 import blogService from './services/blogs'
 import loginService from "./services/login"
+import Notification from "./components/Notification"
+import ErrorNotification from "./components/ErrorNotification"
+import "./styles.css"
 
 const App = () => {
-  // const [newBlog, setNewBlog] = useState([])
   const [blogs, setBlogs] = useState([])
   const [title, setTitle] = useState("")
   const [author, setAuthor] = useState("")
@@ -12,6 +14,8 @@ const App = () => {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [user, setUser] = useState(null)
+  const [message, setMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
     blogService.getAll().then(blogs =>
@@ -44,9 +48,9 @@ const App = () => {
       setPassword("")
     } 
     catch (exception) {
-      // setErrorMessage("Wrong credentials")
+      setErrorMessage("Wrong username or password")
       setTimeout(() => {
-        // setErrorMessage(null)
+        setErrorMessage(null)
       }, 5000)
     }
   }
@@ -65,6 +69,10 @@ const App = () => {
     setTitle("")
     setAuthor("")
     setUrl("")
+    setMessage(`A new blog ${response.title} by ${response.author} has been added`)
+    setTimeout(() => {
+      setMessage(null)
+    }, 3000)
   };
 
   const logout = () => {
@@ -126,10 +134,16 @@ const App = () => {
 
   return (
     <div>
-      <h2>blogs</h2>
 
-      {!user && loginForm()}
+      <Notification message={message} />
+      <ErrorNotification errorMessage={errorMessage} />
+
+      {!user && <div> 
+        <h1>Log in to application</h1>
+        {loginForm()}
+        </div>}
       {user && <div>
+        <h2>blogs</h2>
         <p>{user.name} logged in <button onClick={logout}>log out</button></p>
           {blogForm()}
           {blogsList()}
