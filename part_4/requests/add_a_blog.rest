@@ -1,6 +1,6 @@
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJlYW5pZWJhYnkiLCJpZCI6IjY0MmIyM2Q2MzlkNjg4YzhkYjY3NWY2NSIsImlhdCI6MTY4MjE3NTA2NiwiZXhwIjoxNjgyMTgyMjY2fQ.fWHJ6vGA4xhQst5R5Sq-u7ngKvdTdrf8dbSI8Zuw4ug
+Authorization: Bearer 
 
 {
     "title": "Heart of a Beanie",
