@@ -18,6 +18,7 @@ const Blog = ({ blog }) => {
   }
   
   return (
+    
     <div style={blogStyle}>
       <div style={hideWhenVisible}>
         {blog.title} {blog.author} {" "}
