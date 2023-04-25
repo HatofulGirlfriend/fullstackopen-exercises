@@ -1,0 +1,10 @@
+PUT http://localhost:3003/api/blogs/642afa7911ad578cce8c9c00
+Content-Type: application/json
+
+{
+    "user": "642aaf8f011da5a58325d019",
+    "title": "Hot for Food",
+    "author": "Lauren Toyota",
+    "url": "https://www.hotforfoodblog.com/",
+    "likes": 1
+}

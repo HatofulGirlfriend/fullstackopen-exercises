@@ -1,10 +1,29 @@
 import { useState } from "react"
 
-const Blog = ({ blog }) => {
+const Blog = ({ blog, updateLikes, id, blogname, handleDeleteBlog }) => {
   const [visible, setVisible] = useState(false)
 
   const hideWhenVisible = { display: visible ? 'none' : '' }
   const showWhenVisible = { display: visible ? '' : 'none' }
+
+  const localStorageUserToMatch = () => {
+  const loggedUserJSON = window.localStorage.getItem("loggedBlogappUser")
+  if (loggedUserJSON) {
+    const user = JSON.parse(loggedUserJSON)
+    const updatedUser = JSON.stringify(user.name)
+    return updatedUser
+  }}
+
+  const blogUserToMatch = JSON.stringify(blog.user.name)
+
+  const showOnSameUser = () => {
+    if (blogUserToMatch === localStorageUserToMatch()) {
+      return {display: "" }
+    } else {
+      return {display: "none"}
+    }
+  }
+  console.log("blog user is", blog.user.name)
   
   const toggleVisibility = () => {
     setVisible(!visible)
@@ -27,8 +46,9 @@ const Blog = ({ blog }) => {
       <div style={showWhenVisible}>
         {blog.title} {blog.author} {" "} <button onClick={toggleVisibility}>hide</button><br />
         {blog.url}<br />
-        likes {blog.likes}{" "}<button>like</button><br />
+        likes {blog.likes}{" "}<button onClick={() => updateLikes(blog)}>like</button><br />
         {blog?.user?.name}<br />
+        <button style={showOnSameUser()} onClick={() => handleDeleteBlog(id, blogname)}>remove</button>
       </div>
     </div>
   )

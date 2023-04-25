@@ -10,6 +10,7 @@ import Togglable from './components/Togglable'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
+  // const [blogsCopy, setBlogsCopy] = useState(blogs)
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [user, setUser] = useState(null)
@@ -18,7 +19,7 @@ const App = () => {
 
   useEffect(() => {
     blogService.getAll().then(blogs =>
-      setBlogs( blogs )
+      setBlogs(blogs)
     )  
   }, [])
 
@@ -30,6 +31,34 @@ const App = () => {
       blogService.setToken(user.token)
     }
   }, [])
+
+  const sortByLikes = () => {
+    // const blogsCopy = [...blogs]
+    const compare = (a, b) => {
+      if (a.likes < b.likes){
+        return 1;
+      }
+      if (a.likes > b.likes){
+        return -1;
+      }
+      return 0
+    }
+
+    blogs.sort(compare)
+    // blogsCopy.sort(compare)
+    // setBlogs(blogsCopy)
+  }
+
+  const deleteBlog = (idToDelete, blogToDelete) => {
+    console.log("id to delete is", idToDelete)
+    if (window.confirm(`Remove ${blogToDelete}?`)) {
+      blogService
+        .remove(idToDelete)
+        .then(() => {
+          setBlogs(blogs.filter(b => b.id !== idToDelete))
+        })
+    }
+  }
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -61,13 +90,20 @@ const App = () => {
     let response = await blogService.create(blogObject)
     blogFormRef.current.toggleVisibility()
     response = { ...response, user: { name: user.name } }
-    console.log(response)
     setBlogs(blogs.concat(response));
     setMessage(`A new blog ${response.title} by ${response.author} has been added`)
     setTimeout(() => {
       setMessage(null)
     }, 3000)
   };
+
+  const updateLikes = async (blog) => {
+    console.log(blog)
+    const newLike = { ...blog, likes: blog.likes + 1 }
+
+    await blogService.update(newLike.id, newLike)
+    setBlogs(blogs.map(blog => blog.id === newLike.id ? newLike : blog))
+  }
 
   const logout = () => {
     window.localStorage.removeItem("loggedBlogappUser")
@@ -99,8 +135,9 @@ const App = () => {
 
   const blogsList = () => (
     <>
-    {blogs.map(blog =>
-      <Blog key={blog.id} blog={blog} />
+    {blogs.map(blog => 
+      <Blog key={blog.id} blog={blog} updateLikes={updateLikes}
+      handleDeleteBlog={deleteBlog} id={blog.id} blogname={blog.title} />
     )}
     </>
   )
@@ -116,6 +153,8 @@ const App = () => {
       </>
     )
   }
+
+ sortByLikes()
 
   return (
     <div>

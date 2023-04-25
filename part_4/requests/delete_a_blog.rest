@@ -1,9 +1,9 @@
-DELETE http://localhost:3003/api/blogs/642c01ef205faa50b69d5d7a
+DELETE http://localhost:3003/api/blogs/6447c8e5b2249b07e2392184
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJlYW5pZWJhYnkiLCJpZCI6IjY0MmIyM2Q2MzlkNjg4YzhkYjY3NWY2NSIsImlhdCI6MTY4MDYwNTY0NCwiZXhwIjoxNjgwNjA5MjQ0fQ.4lKypvXhNjJvvGG-Lk8T2pD_Y1OAU1bJ5blSZq6GViA
+Authorization: Bearer 
 
 {
-    "title": "Heart of a Bake",
+    "title": "Heart of a Beanie",
     "author": "Abby",
     "url": "https://heartofabaker.com/"
 }
@@ -11,7 +11,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJlY
 ###
 DELETE http://localhost:3003/api/blogs/642c017c205faa50b69d5d6c
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1pdGV1eCIsImlkIjoiNjQyYjA5YTI3Mzk1NTY4NzBiNDBiNWQ4IiwiaWF0IjoxNjgwNjAyNDc4LCJleHAiOjE2ODA2MDYwNzh9.aIyHdH3Q0orh85VJanHd07XoK7Rhl1sGOCqKKTMt5hY
+Authorization: Bearer 
 
 {
     "title": "Heart of a Bake",
