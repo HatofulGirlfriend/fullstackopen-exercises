@@ -37,15 +37,15 @@ const Blog = ({ blog, updateLikes, id, blogname, handleDeleteBlog }) => {
 
   return (
 
-    <div style={blogStyle}>
-      <div style={hideWhenVisible}>
+    <div style={blogStyle} className="blog-container">
+      <div style={hideWhenVisible} className="initial-display">
         {blog.title} {blog.author} {" "}
         <button onClick={toggleVisibility}>view</button>
       </div>
-      <div style={showWhenVisible}>
+      <div style={showWhenVisible} className="full-display">
         {blog.title} {blog.author} {" "} <button onClick={toggleVisibility}>hide</button><br />
-        {blog.url}<br />
-        likes {blog.likes}{" "}<button onClick={() => updateLikes(blog)}>like</button><br />
+        <span className="urlspan">{blog.url}</span><br />
+        likes <span className="likesspan">{blog.likes}</span>{" "}<button onClick={() => updateLikes(blog)}>like</button><br />
         {blog.user.name}<br />
         <button style={showOnSameUser()} onClick={() => handleDeleteBlog(id, blogname)}>remove</button>
       </div>
